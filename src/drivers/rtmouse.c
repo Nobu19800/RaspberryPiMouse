@@ -277,7 +277,7 @@ static struct mutex lock;
 /* --- Function Declarations --- */
 static void set_motor_r_freq(int freq);
 static void set_motor_l_freq(int freq);
-static int mcp3204_remove(struct spi_device *spi);
+static void mcp3204_remove(struct spi_device *spi);
 static int mcp3204_probe(struct spi_device *spi);
 static unsigned int mcp3204_get_value(int channel);
 static int rtcnt_i2c_probe(struct i2c_client *client,
@@ -1673,7 +1673,7 @@ static int motor_register_dev(void)
 }
 
 /* mcp3204_remove - remove function lined with spi_dirver */
-static int mcp3204_remove(struct spi_device *spi)
+static void mcp3204_remove(struct spi_device *spi)
 {
 	struct mcp3204_drvdata *data;
 	/* get drvdata */
@@ -1681,7 +1681,7 @@ static int mcp3204_remove(struct spi_device *spi)
 	/* free kernel memory */
 	kfree(data);
 	printk(KERN_INFO "%s: mcp3204 removed\n", DRIVER_NAME);
-	return 0;
+	//return 0;
 }
 
 /* mcp3204_probe - probe function lined with spi_dirver */
